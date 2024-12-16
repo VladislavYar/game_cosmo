@@ -4,6 +4,10 @@ from random import randint
 from methods import scale_images
 
 
+STAR_COLOR = [(250, 250, 250), (50, 0, 0), (0, 50, 0),
+              (200, 200, 200), (0, 100, 150), (100, 100, 100)]
+
+
 class Star():
     """Класс создающий звезду."""
 
@@ -17,9 +21,7 @@ class Star():
         self.reverse = False
         self.i = 0
 
-        star_color = [(250, 250, 250), (50, 0, 0), (0, 50, 0),
-                      (200, 200, 200), (0, 100, 150), (100, 100, 100)]
-        self.color = star_color[randint(0, 5)]
+        self.color = STAR_COLOR[randint(0, 5)]
 
         self.size_star = int(self.screen_rect.width // randint(900, 1000))
 
@@ -74,6 +76,27 @@ class Star():
         """Передвижение всех спрайтов из анимаций звезды."""
         for star_animation_rect in self.animation_set_star:
             star_animation_rect.center = self.rect.center
+
+    def shift_start_behind_screen(self, ai_game) -> None:
+        """Сдвиг звезды за экраном."""
+        screen_rect = ai_game.screen.get_rect()
+        width = screen_rect.width
+        height = screen_rect.height
+        x = self.rect.x
+        y = self.rect.y
+        rand_shift = int(width // randint(900, 1000))
+        if x < 0:
+            self.color = STAR_COLOR[randint(0, 5)]
+            self.rect.x = width + x - rand_shift
+        if y < 0:
+            self.color = STAR_COLOR[randint(0, 5)]
+            self.rect.y = height + y - rand_shift
+        if x > width:
+            self.color = STAR_COLOR[randint(0, 5)]
+            self.rect.x = width - x + rand_shift
+        if y > height:
+            self.color = STAR_COLOR[randint(0, 5)]
+            self.rect.y = height - y + rand_shift
 
 
 class Logo():

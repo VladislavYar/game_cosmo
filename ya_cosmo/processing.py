@@ -111,17 +111,18 @@ def dropdown_button_method(ai_game, method, name_drop, width=None, name=None,
             dropdown_button.validation_validity()
 
 
-def space_menu_method(ai_game, method, name_list):
+def space_menu_method(ai_game, method, name_list, count_star=300):
     """Обратока методов класса Star."""
     if method == 'new_space_menu':
-        for i in range(300):
+        for _ in range(count_star):
             new_space = Star(ai_game)
             name_list.append(new_space)
-
+    elif method == 'shift_starts':
+        for star in name_list:
+            star.shift_start_behind_screen(ai_game)
     elif method == 'draw':
         for star in name_list:
             star.draw()
-
     elif method == '_random_flag_star':
         for star in name_list:
             star.flag = randint(0, 2)

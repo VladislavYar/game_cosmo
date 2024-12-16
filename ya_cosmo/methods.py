@@ -8,7 +8,7 @@ def scale_images(coefs, *args):
     list_images = []
 
     for image in args:
-        if type(image) == list:
+        if isinstance(image, list):
             new_images = []
             for sprite in image:
                 rect = sprite.get_rect()

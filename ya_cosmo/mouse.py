@@ -64,16 +64,18 @@ class Mouse(Sprite):
 
         # очищение экрана
         self.arc.fill((0, 0, 0, 0))
+        circle_radius = int(self.dist / self.coef_screen / DEV_RADIUS)
+        rect_radius = self.rect.width / 2
+        if circle_radius > rect_radius - 5:
+            circle_radius = rect_radius - 5
 
-        pygame.draw.circle(self.arc, (self.color_circle_1),
-                           self.rect.center, int(self.dist / self.coef_screen
-                                                 / DEV_RADIUS))
         pygame.draw.arc(self.arc, self.color_arc,
                         self.rect,
                         -radius - self.coef_rad, -radius + self.coef_rad, 2)
+        pygame.draw.circle(self.arc, (self.color_circle_1),
+                           self.rect.center, circle_radius)
         pygame.draw.circle(self.arc, (self.color_circle_2),
-                           self.rect.center, int(self.dist / self.coef_screen
-                                                 / DEV_RADIUS),
+                           self.rect.center, circle_radius,
                            1)
         pygame.draw.circle(self.arc, (self.color_circle_2),
                            self.rect.center, int(3 / self.coef_screen))

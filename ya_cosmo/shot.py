@@ -70,7 +70,7 @@ class ShotHeros(Sprite):
                          self.rect)
 
     def _overall_speed(self):
-        """Метод просчёта скрости выстрела."""
+        """Метод просчёта скорости выстрела."""
         pass
 
     def _rotate_shot(self):

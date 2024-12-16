@@ -661,12 +661,12 @@ class YaCosmo():
             self.camera.update(sprite, self.heros_ship)
 
         self.camera.update(self.logo, self.heros_ship)
-
+        space_menu_method(self, method='shift_starts',
+                          name_list=self.space_menu)
         space_menu_method(self, method='draw',
                           name_list=self.space_menu)
-        self.logo.draw()
 
-        shot_method(self, 'draw', 'ShotHeros', self.shot_heros)
+        shot_method(self, 'draw',  'ShotHeros', self.shot_heros)
         self.heros_ship.draw()
         self.mouse.draw(self.col_flag, self.heros_ship,
                         self.camera.dir_move)
